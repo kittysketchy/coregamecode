@@ -1,6 +1,8 @@
 import sys, pygame
 
 from player import Player
+from camera import Camera
+from blocks import Block
 
 class Game:
     # Main class to manage game assets and behaviour
@@ -21,6 +23,10 @@ class Game:
         self.screen_rect = self.screen.get_rect()
 
         self.player = Player()
+
+        self.entities = [self.player, Block(100, 100, 50, 500, 'red'), Block(1150, 100, 50, 500, 'blue'), Block(250, 600, 800, 50, 'green')]
+
+        #self.camera = Camera(self.entities)
         
     
     def run_game(self):
@@ -48,23 +54,36 @@ class Game:
     def check_keydown_events(self, event):
         # Responds to keypresses
         if event.key == pygame.K_a or event.key == pygame.K_LEFT:
-            self. = True
+            self.player.moving_left = True
         elif event.key == pygame.K_d or event.key == pygame.K_RIGHT:
-            self.going_right = True
+            self.player.moving_right = True
+        elif event.key == pygame.K_w or event.key == pygame.K_UP:
+            self.player.moving_up = True
+        elif event.key == pygame.K_s or event.key == pygame.K_DOWN:
+            self.player.moving_down = True
         
 
     def check_keyup_events(self, event):
         # Responds to key releases
         if event.key == pygame.K_a or event.key == pygame.K_LEFT:
-            self.going_left = False
+            self.player.moving_left = False
         elif event.key == pygame.K_d or event.key == pygame.K_RIGHT:
-            self.going_right = False
+            self.player.moving_right = False
+        elif event.key == pygame.K_w or event.key == pygame.K_UP:
+            self.player.moving_up = False
+        elif event.key == pygame.K_s or event.key == pygame.K_DOWN:
+            self.player.moving_down = False
         
 
     def update_screen(self):
         # Updates images on the screen and flips to the new screen
         
         pygame.draw.rect(self.screen, self.screen_bg_color, self.screen_rect)
+        self.player.draw_player()
+        self.player.update()
+        
+        for block in self.entities[1:]:
+            block.draw(self.screen)
 
         # Makes the most recently drawn screen visible
         pygame.display.flip()

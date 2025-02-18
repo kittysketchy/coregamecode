@@ -11,17 +11,19 @@ class Player:
         # Loads the ship image and gets its rect
         self.image = pygame.image.load('assets/ship.bmp')
         self.rect = self.image.get_rect()
+        self.image.set_colorkey('#E6E6E6')
 
         # Starts the player at the center of the screen
         self.rect.center = self.screen_rect.center
 
-        # Stores a float value for the ship's horizontal position
+        # Stores a float value for the ship's horizontal and vertical position
         self.x = float(self.rect.x)
+        self.y = float(self.rect.y)
 
         # Movement flags
         self.moving_left = False
         self.moving_right = False
-        self_moving_up = False
+        self.moving_up = False
         self.moving_down = False
 
     
