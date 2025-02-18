@@ -48,7 +48,7 @@ class Player:
         self.rect.y = self.y
 
 
-    def draw_player(self):
+    def draw_player(self, offset):
         # Draws the player at its current location
-        self.screen.blit(self.image, self.rect)
+        self.screen.blit(self.image, self.rect.move(offset))
 
