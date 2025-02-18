@@ -1,5 +1,7 @@
 import sys, pygame
 
+from player import Player
+
 class Game:
     # Main class to manage game assets and behaviour
 
@@ -17,6 +19,8 @@ class Game:
         pygame.display.set_caption("")
 
         self.screen_rect = self.screen.get_rect()
+
+        self.player = Player()
         
     
     def run_game(self):
@@ -44,7 +48,7 @@ class Game:
     def check_keydown_events(self, event):
         # Responds to keypresses
         if event.key == pygame.K_a or event.key == pygame.K_LEFT:
-            self.going_left = True
+            self. = True
         elif event.key == pygame.K_d or event.key == pygame.K_RIGHT:
             self.going_right = True
         
