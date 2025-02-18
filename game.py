@@ -17,10 +17,6 @@ class Game:
         pygame.display.set_caption("")
 
         self.screen_rect = self.screen.get_rect()
-
-        # Movement flags
-        self.going_left = False
-        self.going_right = False
         
     
     def run_game(self):
