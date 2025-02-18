@@ -1,7 +1,6 @@
 import sys, pygame
 
 from player import Player
-from camera import Camera
 from blocks import Block
 
 class Game:
@@ -24,10 +23,7 @@ class Game:
 
         self.player = Player()
 
-        self.entities = [self.player, Block(100, 100, 50, 500, 'red'), Block(1150, 100, 50, 500, 'blue'), Block(250, 600, 800, 50, 'green')]
-
-        #self.camera = Camera(self.entities)
-        
+        self.blocks = [Block(100, 100, 50, 500, 'red'), Block(1150, 100, 50, 500, 'blue'), Block(250, 600, 800, 50, 'green')]
     
     def run_game(self):
         # Starts the main loop for the game
@@ -81,10 +77,10 @@ class Game:
         pygame.draw.rect(self.screen, self.screen_bg_color, self.screen_rect)
         self.player.draw_player()
         self.player.update()
-        
-        for block in self.entities[1:]:
-            block.draw(self.screen)
 
+        for block in self.blocks:
+            block.draw(self.player)
+    
         # Makes the most recently drawn screen visible
         pygame.display.flip()
 
