@@ -2,6 +2,7 @@ import sys, pygame
 
 from player import Player
 from blocks import Block
+from camera import Camera
 
 class Game:
     # Main class to manage game assets and behaviour
@@ -17,20 +18,31 @@ class Game:
         self.screen_bg_color = 'white'
 
         self.screen = pygame.display.set_mode((self.screen_width, self.screen_height))
-        pygame.display.set_caption("")
+        pygame.display.set_caption('')
 
         self.screen_rect = self.screen.get_rect()
 
         self.player = Player()
 
-        self.blocks = [Block(100, 100, 50, 500, 'red'), Block(1150, 100, 50, 500, 'blue'), Block(250, 600, 800, 50, 'green')]
+        self.renderables = [Block(100, 100, 50, 500, 'red'), Block(1150, 100, 50, 500, 'blue'), Block(250, 600, 800, 50, 'green')]
 
-        self.offset = pygame.math.Vector2()
+        self.camera = Camera()
+    
+
+    def gather_renderables(self):
+        # Gathers renderables into the camera's inventory
+        self.camera.merge(self.player)
+
+        for renderable in self.renderables:
+            self.camera.merge(renderable)
 
     
     def run_game(self):
         # Starts the main loop for the game
         while True:
+            # Gathers renderables into the camera's inventory
+            self.gather_renderables()
+            
             # Watches for events
             self.check_events()
 
@@ -78,26 +90,13 @@ class Game:
         # Updates images on the screen and flips to the new screen
         
         pygame.draw.rect(self.screen, self.screen_bg_color, self.screen_rect)
-        self.compute_offset()
-        self.update_entities()
+        self.camera.get_offset(self.player)
+        self.camera.render()
+        self.player.update()
     
         # Makes the most recently drawn screen visible
         pygame.display.flip()
 
-
-    def compute_offset(self):
-        # Computes the offset for the player's position
-        self.offset.x = -(self.player.x - self.screen_width / 2)
-        self.offset.y = -(self.player.y - self.screen_height / 2)
-
-
-    def update_entities(self):
-        # Updates the entities on the screen
-        self.player.draw_player(self.offset)
-        self.player.update()
-
-        for block in self.blocks:
-            block.draw(self.offset)
 
 if __name__ == '__main__':
     # Makes a game instance and runs the game
