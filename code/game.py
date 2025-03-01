@@ -24,7 +24,12 @@ class Game:
 
         self.player = Player()
 
-        self.renderables = [Block(100, 100, 50, 500, 'red'), Block(1150, 100, 50, 500, 'blue'), Block(250, 600, 800, 50, 'green')]
+        self.renderables = [
+            Block(340, 60, 600, 50, 'black'),
+            Block(340, 610, 600, 50, 'black'),
+            Block(340, 110, 50, 500, 'black'),
+            Block(890, 110, 50, 500, 'black')
+        ]
 
         self.camera = Camera()
     
