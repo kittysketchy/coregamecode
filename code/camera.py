@@ -24,20 +24,16 @@ class Camera:
 
     def merge(self, renderable):
         # Merges renderables into the renders list
-        if hasattr(renderable, 'image') and hasattr(renderable, 'rect'):
-            self.renders.append((renderable.image, renderable.rect))
-        elif hasattr(renderable, 'rect'):
-            self.renders.append(renderable.rect)
+        self.renders.append(renderable)
 
 
     def render(self):
         # Renders renderables onto the screen
         for renderable in self.renders:
-            if isinstance(renderable, tuple):
-                image, rect = renderable
-                self.screen.blit(image, rect.move(self.offset))
-            elif isinstance(renderable, pygame.Rect):
-                pygame.draw.rect(self.screen, 'black', renderable.move(self.offset))
+            if hasattr(renderable, 'image') and hasattr(renderable, 'rect'):
+                self.screen.blit(renderable.image, renderable.rect.move(self.offset))
+            elif hasattr(renderable, 'rect'):
+                pygame.draw.rect(self.screen, renderable.color, renderable.rect.move(self.offset))
 
         # Clears the renders list
         self.renders.clear()
