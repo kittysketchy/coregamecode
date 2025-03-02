@@ -41,8 +41,8 @@ class Game:
             # Redraws the screen during each pass through the loop
             self.update_screen()
 
-            # Clocks the game at 60 FPS
-            pygame.time.Clock().tick(60)
+            # Clocks the game at 240 FPS
+            pygame.time.Clock().tick(240)
 
         
     def update_screen(self):
@@ -54,7 +54,7 @@ class Game:
         self.player.update()
     
         # Makes the most recently drawn screen visible
-        pygame.display.flip()
+        pygame.display.update()
 
 
 if __name__ == '__main__':
