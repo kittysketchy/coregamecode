@@ -16,7 +16,7 @@ class Game:
 
         self.renderables = [Block(140, 10, 1000, 50, 'black'), Block(140, 760, 1000, 50, 'black'), Block(140, 60, 50, 700, 'black'), Block(1090, 60, 50, 700, 'black')]
 
-        self.input = Input()
+        self.input = Input(self.player)
 
         self.camera = Camera()
     
@@ -36,7 +36,7 @@ class Game:
             self.gather_renderables()
             
             # Watches for events
-            self.input.check_events(self.player)
+            self.input.check_events()
 
             # Redraws the screen during each pass through the loop
             self.update_screen()
