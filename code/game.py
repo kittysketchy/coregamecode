@@ -9,7 +9,7 @@ class Game:
     # Main class to manage game assets and behaviour
 
     def __init__(self):
-        # Initializes the game and creates game resources
+        # Provisions the game and creates game resources
         pygame.init()
 
         # Screen settings
