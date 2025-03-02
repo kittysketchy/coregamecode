@@ -40,8 +40,11 @@ class Game:
 
             # Redraws the screen during each pass through the loop
             self.update_screen()
-        
 
+            # Clocks the game at 120 FPS
+            pygame.time.Clock().tick(120)
+
+        
     def update_screen(self):
         # Updates images on the screen and flips to the new screen
         
