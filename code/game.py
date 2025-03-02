@@ -1,5 +1,6 @@
 import pygame
 
+from settings import Settings
 from player import Player
 from blocks import Block
 from input import Input
@@ -9,19 +10,7 @@ class Game:
     # Main class to manage game assets and behaviour
 
     def __init__(self):
-        # Provisions the game and creates game resources
-        pygame.init()
-
-        # Screen settings
-        self.screen_width = 1280
-        self.screen_height = 720
-
-        self.screen_bg_color = 'white'
-
-        self.screen = pygame.display.set_mode((self.screen_width, self.screen_height))
-        pygame.display.set_caption('')
-
-        self.screen_rect = self.screen.get_rect()
+        self.settings = Settings()
 
         self.player = Player()
 
@@ -56,7 +45,7 @@ class Game:
     def update_screen(self):
         # Updates images on the screen and flips to the new screen
         
-        pygame.draw.rect(self.screen, self.screen_bg_color, self.screen_rect)
+        pygame.draw.rect(self.settings.screen, self.settings.screen_bg_color, self.settings.screen_rect)
         self.camera.get_offset(self.player)
         self.camera.render()
         self.player.update()

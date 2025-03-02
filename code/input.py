@@ -3,10 +3,6 @@ import sys, pygame
 class Input:
     # Main class to manage player input
 
-    def __init__(self):
-        pass
-
-
     def check_events(self, player):
         # Responds to keyboard and mouse events
         for event in pygame.event.get():
