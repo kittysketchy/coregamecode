@@ -12,13 +12,13 @@ class Game:
     def __init__(self):
         self.settings = Settings()
 
-        self.player = Player()
+        self.player = Player(self.settings)
 
         self.renderables = [Block(140, 10, 1000, 50, 'black'), Block(140, 760, 1000, 50, 'black'), Block(140, 60, 50, 700, 'black'), Block(1090, 60, 50, 700, 'black')]
 
         self.input = Input(self.player)
 
-        self.camera = Camera()
+        self.camera = Camera(self.settings)
     
 
     def gather_renderables(self):
