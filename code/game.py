@@ -3,7 +3,7 @@ import pygame
 from settings import Settings
 from player import Player
 from blocks import Block
-from input import Input
+from input.input import Input
 from camera import Camera
 
 class Game:
@@ -41,8 +41,8 @@ class Game:
             # Redraws the screen during each pass through the loop
             self.update_screen()
 
-            # Clocks the game at 120 FPS
-            pygame.time.Clock().tick(120)
+            # Clocks the game at 60 FPS
+            pygame.time.Clock().tick(60)
 
         
     def update_screen(self):
