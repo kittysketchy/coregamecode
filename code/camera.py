@@ -1,4 +1,4 @@
-import pygame, settings
+import pygame, parameters
 
 class Camera:
     # Main class to manage the camera
@@ -12,12 +12,12 @@ class Camera:
 
     def grasp_offset(self, player):
         # Grasps the offset for the player's position
-        self.offset.x = -(player.x - settings.screen_width / 2)
-        self.offset.y = -(player.y - settings.screen_height / 2)
+        self.offset.x = -(player.x - parameters.screen_width / 2)
+        self.offset.y = -(player.y - parameters.screen_height / 2)
 
 
     def merge(self, renderable):
-        # Merges renderables into the renders list
+        # Merges renderables into the renderables list
         self.renderables.append(renderable)
 
 
@@ -25,9 +25,9 @@ class Camera:
         # Renders renderables onto the screen
         for renderable in self.renderables:
             if hasattr(renderable, 'image') and hasattr(renderable, 'rect'):
-                settings.screen.blit(renderable.image, renderable.rect.move(self.offset))
+                parameters.screen.blit(renderable.image, renderable.rect.move(self.offset))
             elif hasattr(renderable, 'rect'):
-                pygame.draw.rect(settings.screen, renderable.color, renderable.rect.move(self.offset))
+                pygame.draw.rect(parameters.screen, renderable.color, renderable.rect.move(self.offset))
 
         # Clears the renders list
         self.renderables.clear()

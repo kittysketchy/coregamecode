@@ -1,4 +1,4 @@
-import pygame, settings
+import pygame, parameters
 
 from player import Player
 from blocks import Block
@@ -47,7 +47,7 @@ class Game:
     def update_screen(self):
         # Updates images on the screen and flips to the new screen
         
-        pygame.draw.rect(settings.screen, settings.screen_bg_color, settings.screen_rect)
+        pygame.draw.rect(parameters.screen, parameters.screen_bg_color, parameters.screen_rect)
         self.camera.grasp_offset(self.player)
         self.camera.render()
         self.player.update()
