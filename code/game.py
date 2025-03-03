@@ -46,7 +46,7 @@ class Game:
         # Updates images on the screen and flips to the new screen
         
         pygame.draw.rect(self.settings.screen, self.settings.screen_bg_color, self.settings.screen_rect)
-        self.camera.get_offset(self.player)
+        self.camera.grasp_offset(self.player)
         self.camera.render()
         self.player.update()
     

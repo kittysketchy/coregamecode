@@ -12,8 +12,8 @@ class Camera:
         self.renders = []
 
 
-    def get_offset(self, player):
-        # Computes the offset for the player's position
+    def grasp_offset(self, player):
+        # Grasps the offset for the player's position
         self.offset.x = -(player.x - self.settings.screen_width / 2)
         self.offset.y = -(player.y - self.settings.screen_height / 2)
 
