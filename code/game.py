@@ -1,6 +1,5 @@
-import pygame
+import pygame, settings
 
-from settings import Settings
 from player import Player
 from blocks import Block
 from input.input import Input
@@ -10,15 +9,18 @@ class Game:
     # Main class to manage game assets and behaviour
 
     def __init__(self):
-        self.settings = Settings()
+        # Provisions the game and creates game resources
+        pygame.init()
+        
+        pygame.display.set_caption('')
 
-        self.player = Player(self.settings)
+        self.player = Player()
 
         self.renderables = [Block(140, 10, 1000, 50, 'black'), Block(140, 760, 1000, 50, 'black'), Block(140, 60, 50, 700, 'black'), Block(1090, 60, 50, 700, 'black')]
 
         self.input = Input(self.player)
 
-        self.camera = Camera(self.settings)
+        self.camera = Camera()
     
 
     def gather_renderables(self):
@@ -45,7 +47,7 @@ class Game:
     def update_screen(self):
         # Updates images on the screen and flips to the new screen
         
-        pygame.draw.rect(self.settings.screen, self.settings.screen_bg_color, self.settings.screen_rect)
+        pygame.draw.rect(settings.screen, settings.screen_bg_color, settings.screen_rect)
         self.camera.grasp_offset(self.player)
         self.camera.render()
         self.player.update()
