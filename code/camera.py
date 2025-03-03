@@ -9,7 +9,7 @@ class Camera:
         self.offset = pygame.math.Vector2()
 
         # Inventory of renderables to be rendered onto the screen
-        self.renders = []
+        self.renderables = []
 
 
     def grasp_offset(self, player):
@@ -20,16 +20,16 @@ class Camera:
 
     def merge(self, renderable):
         # Merges renderables into the renders list
-        self.renders.append(renderable)
+        self.renderables.append(renderable)
 
 
     def render(self):
         # Renders renderables onto the screen
-        for renderable in self.renders:
+        for renderable in self.renderables:
             if hasattr(renderable, 'image') and hasattr(renderable, 'rect'):
                 self.settings.screen.blit(renderable.image, renderable.rect.move(self.offset))
             elif hasattr(renderable, 'rect'):
                 pygame.draw.rect(self.settings.screen, renderable.color, renderable.rect.move(self.offset))
 
         # Clears the renders list
-        self.renders.clear()
+        self.renderables.clear()
