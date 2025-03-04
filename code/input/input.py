@@ -25,11 +25,8 @@ class Input:
             self.player.moving_left = True
         elif event.key == pygame.K_d or event.key == pygame.K_RIGHT:
             self.player.moving_right = True
-        elif event.key == pygame.K_w or event.key == pygame.K_UP:
-            self.player.moving_up = True
-        elif event.key == pygame.K_s or event.key == pygame.K_DOWN:
-            self.player.moving_down = True
-
+        elif event.key == pygame.K_SPACE:
+            self.player.jumping = True
             
     def check_keyup_events(self, event):
         # Responds to key releases
@@ -37,7 +34,5 @@ class Input:
             self.player.moving_left = False
         elif event.key == pygame.K_d or event.key == pygame.K_RIGHT:
             self.player.moving_right = False
-        elif event.key == pygame.K_w or event.key == pygame.K_UP:
-            self.player.moving_up = False
-        elif event.key == pygame.K_s or event.key == pygame.K_DOWN:
-            self.player.moving_down = False
+        elif event.key == pygame.K_SPACE:
+            self.player.jumping = False

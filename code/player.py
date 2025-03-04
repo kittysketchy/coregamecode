@@ -32,6 +32,7 @@ class Player:
 
         self.gravity = 1
 
+        self.jumping = False
         self.jump_images = utils.utils.import_folder('assets', 'jump')
 
     
@@ -69,10 +70,8 @@ class Player:
     
     def move_y(self, dt):
         # Responsible for handling movement on the vertical axis
-        if self.moving_up and self.rect.top > 0:
+        if self.jumping and self.rect.top > 0:
             self.rect.y -= 2 * dt
-        if self.moving_down and self.rect.bottom < parameters.screen_rect.bottom:
-            self.rect.y += 1 * dt
 
         self.rect.y += self.gravity * dt
 
