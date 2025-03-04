@@ -53,7 +53,7 @@ class Game:
         self.player.upgrade()
     
         # Makes the most recently drawn screen visible
-        pygame.display.update()
+        pygame.display.flip()
 
 
 if __name__ == '__main__':
