@@ -18,7 +18,8 @@ class Camera:
 
     def merge(self, renderable):
         # Merges renderables into the renderables list
-        self.renderables.append(renderable)
+        if renderable not in self.renderables:
+            self.renderables.append(renderable)
 
 
     def render(self):
@@ -28,6 +29,3 @@ class Camera:
                 parameters.screen.blit(renderable.image, renderable.rect.move(self.offset))
             elif hasattr(renderable, 'rect'):
                 pygame.draw.rect(parameters.screen, renderable.color, renderable.rect.move(self.offset))
-
-        # Clears the renders list
-        self.renderables.clear()
