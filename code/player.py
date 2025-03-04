@@ -9,7 +9,7 @@ class Player:
         # Loads the ship image and gets its rect
         self.images = utils.utils.import_folder('assets', 'idle')
         self.image = self.images[0]
-        self.rect = self.image.get_rect()
+        self.rect = self.image.get_rect().inflate(-20, -5)
         self.previous_rect = self.rect.copy()
 
         self.image_index = 0
@@ -29,6 +29,10 @@ class Player:
         self.frame_duration = 150
 
         self.facing_right = True
+
+        self.gravity = 1
+
+        self.jump_images = utils.utils.import_folder('assets', 'jump')
 
     
     def move(self, dt):
@@ -66,9 +70,11 @@ class Player:
     def move_y(self, dt):
         # Responsible for handling movement on the vertical axis
         if self.moving_up and self.rect.top > 0:
-            self.rect.y -= 1 * dt
+            self.rect.y -= 2 * dt
         if self.moving_down and self.rect.bottom < parameters.screen_rect.bottom:
             self.rect.y += 1 * dt
+
+        self.rect.y += self.gravity * dt
 
 
     def check_collision(self, x):

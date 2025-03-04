@@ -29,8 +29,8 @@ class Input:
             self.player.moving_up = True
         elif event.key == pygame.K_s or event.key == pygame.K_DOWN:
             self.player.moving_down = True
-        
 
+            
     def check_keyup_events(self, event):
         # Responds to key releases
         if event.key == pygame.K_a or event.key == pygame.K_LEFT:
