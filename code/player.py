@@ -1,13 +1,18 @@
 import pygame, parameters
 
+import utils.utils
+
 class Player:
     # Main class to manage the player
 
     def __init__(self, renderables):
         # Loads the ship image and gets its rect
-        self.image = pygame.image.load('assets/ship.bmp')
+        self.images = utils.utils.import_folder('assets', 'idle')
+        self.image = self.images[0]
         self.rect = self.image.get_rect()
         self.previous_rect = self.rect.copy()
+
+        self.image_index = 0
 
         self.image.set_colorkey('#E6E6E6')
 
@@ -28,6 +33,12 @@ class Player:
         self.move_y(dt)
         self.check_collision(False)
 
+
+    def animate(self, dt):
+        self.image_index += dt
+        self.image_index %= len(self.images)
+        self.image = self.images[self.image_index]
+        
 
     def move_x(self, dt):
         # Responsible for handling movement on the horizontal axis
@@ -63,5 +74,6 @@ class Player:
 
 
     def upgrade(self, dt):
+        self.animate(dt)
         self.previous_rect = self.rect.copy()
         self.move(dt)

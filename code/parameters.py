@@ -7,3 +7,5 @@ screen_bg_color = 'white'
 
 screen = pygame.display.set_mode((screen_width, screen_height))
 screen_rect = screen.get_rect()
+
+animation_speed = 1
