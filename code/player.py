@@ -9,7 +9,7 @@ class Player:
         # Loads the ship image and gets its rect
         self.images = utils.utils.import_folder('assets', 'idle')
         self.image = self.images[0]
-        self.rect = self.image.get_rect().inflate(-20, -5)
+        self.rect = self.image.get_rect().inflate(-20, -17)
         self.previous_rect = self.rect.copy()
 
         self.image_index = 0
@@ -53,7 +53,7 @@ class Player:
 
         self.image = self.images[self.image_index] if self.facing_right else pygame.transform.flip(self.images[self.image_index], True, False)
         
-
+        
     def move_x(self, dt):
         # Responsible for handling movement on the horizontal axis
         if self.moving_left:
