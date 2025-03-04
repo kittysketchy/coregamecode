@@ -12,8 +12,11 @@ class Camera:
 
     def grasp_offset(self, player):
         # Grasps the offset for the player's position
-        self.offset.x = -(player.rect.x - parameters.screen_width / 2)
-        self.offset.y = -(player.rect.y - parameters.screen_height / 2)
+        x = parameters.screen_width // 2 - player.rect.x
+        y = parameters.screen_height // 2 - player.rect.y
+
+        self.offset.x += (x - self.offset.x) * 0.1
+        self.offset.y += (y - self.offset.y) * 0.1
 
 
     def merge(self, renderable):
