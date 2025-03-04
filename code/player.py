@@ -25,6 +25,11 @@ class Player:
 
         self.renderables = renderables
 
+        self.frame_timer = 0
+        self.frame_duration = 150
+
+        self.facing_right = True
+
     
     def move(self, dt):
         # Updates the player's position based on the movement flags
@@ -35,17 +40,27 @@ class Player:
 
 
     def animate(self, dt):
-        self.image_index += dt
-        self.image_index %= len(self.images)
-        self.image = self.images[self.image_index]
+        self.frame_timer += dt
+
+        if self.frame_timer >= self.frame_duration:
+            self.image_index = (self.image_index + 1) % len(self.images)
+            self.frame_timer = 0.0
+
+        self.image = self.images[self.image_index] if self.facing_right else pygame.transform.flip(self.images[self.image_index], True, False)
         
 
     def move_x(self, dt):
         # Responsible for handling movement on the horizontal axis
-        if self.moving_left and self.rect.left > 0:
-            self.rect.x -= 1 * dt
-        if self.moving_right and self.rect.right < parameters.screen_rect.right:
-            self.rect.x += 1 * dt
+        if self.moving_left:
+            self.facing_right = False
+             
+            if self.rect.left > 0:
+                self.rect.x -= 1 * dt
+        if self.moving_right:
+            self.facing_right = True
+
+            if self.rect.right < parameters.screen_rect.right:
+                self.rect.x += 1 * dt
 
     
     def move_y(self, dt):
