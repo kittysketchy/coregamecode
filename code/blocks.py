@@ -4,3 +4,4 @@ class Block:
     def __init__(self, x, y, width, height, color):
         self.rect = pygame.Rect(x, y, width, height)
         self.color = color
+        self.previous_rect = self.rect.copy()

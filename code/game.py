@@ -14,9 +14,9 @@ class Game:
         
         pygame.display.set_caption('')
 
-        self.player = Player()
-
         self.renderables = [Block(140, 10, 1000, 50, 'black'), Block(140, 760, 1000, 50, 'black'), Block(140, 60, 50, 700, 'black'), Block(1090, 60, 50, 700, 'black')]
+
+        self.player = Player(self.renderables)
 
         self.input = Input(self.player)
 
@@ -50,7 +50,7 @@ class Game:
         pygame.draw.rect(parameters.screen, parameters.screen_bg_color, parameters.screen_rect)
         self.camera.grasp_offset(self.player)
         self.camera.render()
-        self.player.update()
+        self.player.upgrade()
     
         # Makes the most recently drawn screen visible
         pygame.display.update()
