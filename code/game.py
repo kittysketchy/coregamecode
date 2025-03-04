@@ -14,7 +14,18 @@ class Game:
         
         pygame.display.set_caption('')
 
-        self.renderables = [Block(140, 10, 1000, 50, 'black'), Block(140, 760, 1000, 50, 'black'), Block(140, 60, 50, 700, 'black'), Block(1090, 60, 50, 700, 'black')]
+        self.renderables = [
+            Block(140, 10, 1000, 50, 'black'),
+            Block(140, 760, 1000, 50, 'black'),
+            Block(140, 60, 50, 700, 'black'),
+            Block(1090, 60, 50, 700, 'black'),  
+
+            Block(300, 200, 200, 30, 'gray'),
+            Block(700, 300, 200, 30, 'gray'),
+            Block(500, 450, 300, 30, 'gray'),
+            Block(250, 600, 150, 30, 'gray'),
+            Block(850, 600, 150, 30, 'gray')
+        ]
 
         self.player = Player(self.renderables)
 

@@ -9,7 +9,7 @@ class Player:
         # Loads the ship image and gets its rect
         self.images = utils.utils.import_folder('assets', 'idle')
         self.image = self.images[0]
-        self.rect = self.image.get_rect().inflate(-20, -17)
+        self.rect = self.image.get_rect().inflate(-25, -18)
         self.previous_rect = self.rect.copy()
 
         self.image_index = 0
@@ -33,7 +33,6 @@ class Player:
         self.gravity = 1
 
         self.jumping = False
-        self.jump_images = utils.utils.import_folder('assets', 'jump')
 
     
     def move(self, dt):
@@ -47,11 +46,16 @@ class Player:
     def animate(self, dt):
         self.frame_timer += dt
 
+        if self.jumping:
+            self.images = utils.utils.import_folder('assets', 'jump')
+        else:
+            self.images = utils.utils.import_folder('assets', 'idle')
+
         if self.frame_timer >= self.frame_duration:
             self.image_index = (self.image_index + 1) % len(self.images)
-            self.frame_timer = 0.0
+            self.frame_timer = 0
 
-        self.image = self.images[self.image_index] if self.facing_right else pygame.transform.flip(self.images[self.image_index], True, False)
+        self.image = self.images[self.image_index % len(self.images)] if self.facing_right else pygame.transform.flip(self.images[self.image_index % len(self.images)], True, False)
         
         
     def move_x(self, dt):
