@@ -21,6 +21,8 @@ class Game:
         self.input = Input(self.player)
 
         self.camera = Camera()
+
+        self.dt = 0
     
 
     def gather_renderables(self):
@@ -43,6 +45,9 @@ class Game:
             # Redraws the screen during each pass through the loop
             self.update_screen()
 
+            # Clocks the game at 60 FPS
+            self.dt = pygame.time.Clock().tick(60)
+
         
     def update_screen(self):
         # Updates images on the screen and flips to the new screen
@@ -50,7 +55,7 @@ class Game:
         pygame.draw.rect(parameters.screen, parameters.screen_bg_color, parameters.screen_rect)
         self.camera.grasp_offset(self.player)
         self.camera.render()
-        self.player.upgrade()
+        self.player.upgrade(self.dt)
     
         # Makes the most recently drawn screen visible
         pygame.display.flip()

@@ -21,28 +21,28 @@ class Player:
         self.renderables = renderables
 
     
-    def move(self):
+    def move(self, dt):
         # Updates the player's position based on the movement flags
-        self.move_x()
+        self.move_x(dt)
         self.check_collision(True)
-        self.move_y()
+        self.move_y(dt)
         self.check_collision(False)
 
 
-    def move_x(self):
+    def move_x(self, dt):
         # Responsible for handling movement on the horizontal axis
         if self.moving_left and self.rect.left > 0:
-            self.rect.x -= 1
+            self.rect.x -= 1 * dt
         if self.moving_right and self.rect.right < parameters.screen_rect.right:
-            self.rect.x += 1
+            self.rect.x += 1 * dt
 
     
-    def move_y(self):
+    def move_y(self, dt):
         # Responsible for handling movement on the vertical axis
         if self.moving_up and self.rect.top > 0:
-            self.rect.y -= 1
+            self.rect.y -= 1 * dt
         if self.moving_down and self.rect.bottom < parameters.screen_rect.bottom:
-            self.rect.y += 1
+            self.rect.y += 1 * dt
 
 
     def check_collision(self, x):
@@ -62,6 +62,6 @@ class Player:
                         self.rect.top = renderable.rect.bottom
 
 
-    def upgrade(self):
+    def upgrade(self, dt):
         self.previous_rect = self.rect.copy()
-        self.move()
+        self.move(dt)
