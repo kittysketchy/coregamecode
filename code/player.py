@@ -52,7 +52,7 @@ class Player:
             self.images = utils.utils.import_folder('assets', 'idle')
 
         if self.frame_timer >= self.frame_duration:
-            self.image_index = (self.image_index + 1) % len(self.images)
+            self.image_index += 1
             self.frame_timer = 0
 
         self.image = self.images[self.image_index % len(self.images)] if self.facing_right else pygame.transform.flip(self.images[self.image_index % len(self.images)], True, False)
@@ -75,7 +75,7 @@ class Player:
     def move_y(self, dt):
         # Responsible for handling movement on the vertical axis
         if self.jumping and self.rect.top > 0:
-            self.rect.y -= 2 * dt
+            self.rect.y -= 3 * dt
 
         self.rect.y += self.gravity * dt
 
